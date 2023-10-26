@@ -1,16 +1,15 @@
 import tkinter as tk
 import redis
 
-# Создаем подключение к Redis
+# подключение к Redis
 connection = redis.Redis(host='localhost')
 
-# Функция для удобвста получения элементов с бд
-def get_int_from_db(settings, key):
+
+def decode(settings, key):
     return settings[key].decode()
 
 def save_settings():
-    # Сохраняем настройки в Redis для выбранного пользователя
-    selected_user = user.get(user.curselection())  # Получаем выбранного пользователя из списка
+    selected_user = user.get(user.curselection())
     font = text1.get()
     font_size = text2.get()
     font_color = text3.get()
@@ -22,22 +21,23 @@ def save_settings():
         'font_color': font_color,
         'font_style': font_style,
     }
-    
-    # Используем хэш Redis для хранения настроек пользователя
+
+    # хэшируем
     connection.hmset(selected_user, settings)
 
 def update_label_text():
     # Обновляем надпись с учетом текущих настроек
-    selected_user = user.get(user.curselection())  # Получаем выбранного пользователя из списка
+    selected_user = user.get(user.curselection())
     settings = connection.hgetall(selected_user)
-    print(settings)
+    print(settings) #отладочный вывод
+
     # Применяем настройки к тексту в надписи
     formatted_text = 'This is a sample text.'
     if settings:
-        custom_font = (get_int_from_db(settings, b'font'), get_int_from_db(settings, b'font_size'), get_int_from_db(settings, b'font_style'))
-        font_color = get_int_from_db(settings, b'font_color')
+        custom_font = (decode(settings, b'font'), decode(settings, b'font_size'), decode(settings, b'font_style'))
+        font_color = decode(settings, b'font_color')
         
-        label.config(text=formatted_text, font=custom_font, foreground=font_color, )
+        label.config(text=formatted_text, font=custom_font, foreground=font_color)
     else:
         label.config(text=formatted_text, font='', foreground='black')
 
