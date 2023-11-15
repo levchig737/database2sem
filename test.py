@@ -239,17 +239,43 @@ class AggregationApp:
         self.master = master
         self.master.title("Aggregate Football Data")
 
-        self.command_label = Label(master, text="Команда для агрегации:")
-        self.command_label.grid(row=0, column=0)
+        self.collection_var2 = StringVar()
+        self.collection_entry = ttk.Combobox(master,textvariable=self.collection_var2 ,values=collections_names)
+        self.collection_entry.grid(row=0, column=0, columnspan=2)
+        self.collection_entry.bind("<<ComboboxSelected>>", lambda event: self.choose_current_collection(event))
 
-        self.command_entry = Entry(master, width=60)
-        self.command_entry.grid(row=0, column=1)
+        self.current_collection_label = Label(master, text="Текущая коллекция:")
+        self.current_collection_label.grid(row=1, column=0)
+        
+        self.current_collection_label2 = Label(master, text="Футбольные команды")
+        self.current_collection_label2.grid(row=1, column=1)
+
+        self.command_label = Label(master, text="Команда для агрегации:")
+        self.command_label.grid(row=2, column=0)
+
+        self.command_entry =  Text(master, height=10, width=70)
+        self.command_entry.grid(row=2, column=1)
 
         self.aggregate_button = Button(master, text="Выполнить агрегацию", command=self.perform_aggregation)
-        self.aggregate_button.grid(row=1, column=0, columnspan=2)
+        self.aggregate_button.grid(row=3, column=0, columnspan=2)
 
         self.documents_text = Text(master, width=90, height=20, state="disabled")
         self.documents_text.grid(row=7, column=0, columnspan=2, padx=40, pady=10)
+
+        self.current_collection = football_collection
+    
+
+    def choose_current_collection(self, event):
+        cur_collection = self.collection_var2.get()
+        if (cur_collection == collections_names[1]):
+            self.current_collection = game_collection
+            self.current_collection_label2.config(text=collections_names[1])
+        else:
+            self.current_collection = football_collection
+            self.current_collection_label2.config(text=collections_names[0])
+
+        print(self.current_collection)
+
 
 
     def show_documents(self,result):
@@ -263,12 +289,12 @@ class AggregationApp:
        
 
     def perform_aggregation(self):
-        query_text = self.command_entry.get()
+        query_text = self.command_entry.get("1.0", END)
 
         try:
             # Попытка выполнить агрегацию
             pipeline = eval(query_text)
-            results = game_collection.aggregate(pipeline)
+            results = self.current_collection.aggregate(pipeline)
 
             # Вывод результатов
             self.show_documents(results)
@@ -281,21 +307,27 @@ class AggregationApp:
             self.documents_text.config(state="disabled")
 
     ### Примеры запросов агрегации:
-    # [{"$sort": {"_id": -1}}, {"$limit": 1}] - вывод последнего документа коллекции
+[{"$sort": {"_id": -1}}, {"$limit": 1}] # вывод последнего документа коллекции
 
+# Вывод всех футболистов и их кол-во забитых голов во всех играх
 [
-    { "$group": { '_id': 'score', 'score': { "$sum": '$score' } } }
+    {"$unwind": {"path": "$goals", "preserveNullAndEmptyArrays": True}},
+    {"$match": {"goals.author": {"$exists": True}}},
+    {"$group": {"_id": "$goals.author", "total_goals": {"$sum": 1}}},
+    {"$project": {"_id": 0, "player_name": "$_id", "total_goals": 1}}
 ]
 
+# Вывод количества игроков, котоыре забыли  больше 2 голов во всех играх
 [
-    {"$group": {"_id": None, "total_score": {"$sum": {"$convert": {"input": "$score", "to": "int"}}}}}
-]
-
-[{"$unwind": {"path": "$players", "preserveNullAndEmptyArrays": True}},
-    {"$match": {"$or": [{"players.score": {"$gt": 2}}, {"players.score": {"$exists": False}}]}},
+    {"$unwind": {"path": "$goals", "preserveNullAndEmptyArrays": True}},
+    {"$match": {"goals.author": {"$exists": True}}},
+    {"$group": {"_id": "$goals.author", "total_goals": {"$sum": 1}}},
+    {"$match": {"total_goals": {"$gt": 2}}},
     {"$group": {"_id": None, "total_players": {"$sum": 1}}},
-    {"$project": {"_id": 0, "total_players": 1}}
+    {"$project": {"_id": 0, "total_players": "$total_players"}}
 ]
+
+
 
 # Запуск оконных приложений
 root1 = Tk()
@@ -309,7 +341,6 @@ football_app = FootballApp(root1)
 root3 = Tk()
 aggregation_app = AggregationApp(root3)
 root3.geometry('800x600')
-
 
 root1.mainloop()
 # root2.mainloop()
