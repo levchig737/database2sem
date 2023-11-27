@@ -1,0 +1,485 @@
+CREATE (:Station {name : 'Автовокзал'}),
+(:Station {name : 'улица Советская'}),
+(:Station {name : 'дом Пионеров'}),
+(:Station {name : 'дом Культуры'}),
+(:Station {name : 'посёлок Труда'}),
+(:Station {name : 'улица Повенецкая'}),
+(:Station {name : 'посёлок Пудоржский'}),
+(:Station {name : 'Лумбуши-1'}),
+(:Station {name : 'Лумбуши-2'}),
+(:Station {name : 'Лумбуши-3'}),
+(:Station {name : 'Брюхово'}),
+(:Station {name : 'улица Кирова'}),
+(:Station {name : 'посёлок Пиндуши'}),
+(:Station {name : 'Общежитие'}),
+(:Station {name : 'Младшая школа'});
+
+CREATE (:Station {name : 'Мост'}),
+(:Station {name : 'Ясная поляна'}),
+(:Station {name : 'посёлок Повенец'}),
+(:Station {name : 'Повенец конечная'});
+
+CREATE (:Station {name : 'Лавасгуба'}),
+(:Station {name : 'Федотово'}),
+(:Station {name : 'Сигово'}),
+(:Station {name : 'Мост Плавник'}),
+(:Station {name : 'Шуньга'}),
+(:Station {name : 'Великая Нева'}),
+(:Station {name : 'Великая Губа'});
+
+CREATE (:Station {name : 'Станция-1'}),
+(:Station {name : 'Станция-2'});
+
+CREATE (:Station {name : 'Новая-1'}),
+(:Station {name : 'Новая-2'}),
+(:Station {name : 'Новая-3'}),
+(:Station {name : 'Новая-4'});
+
+
+CREATE (:organization:hostel{name: 'Карелочка'}),
+(:organization:public{name: 'Вокзал'}),
+(:organization:shop{name: 'Цветочный'}),
+(:organization:hostel{name: 'Онежская'}),
+(:organization:education{name: 'Школа №1'}),
+(:organization:public{name: 'Ростелеком'}),
+(:organization:public{name: 'Дом Культуры'}),
+(:organization:public{name: 'Городской парк'}),
+(:organization:public{name: 'Тюрьма'}),
+(:organization:shop{name: 'Песня'}),
+(:organization:public{name: 'Заправка'}),
+(:organization:public{name: 'Мойка'}),
+(:organization:public{name: 'Кладбище'}),
+(:organization:public{name: 'Посевные поля'}),
+(:organization:hostel{name: 'Отдых'}),
+(:organization:public{name: 'Церковь'}),
+(:organization:cafe{name: 'Клава'}),
+(:organization:cafe{name: 'Таверна'}),
+(:organization:education{name: 'Библиотека'}),
+(:organization:shop{name: 'Северный'}),
+(:organization:medicine{name: 'Аптека'}),
+(:organization:shop{name: 'Пятёрочка'}),
+(:organization:education{name: 'Пиндушская Школа'}),
+(:organization:public{name: 'Памятник'}),
+(:organization:shop{name: 'Магазин у дома'})
+;
+
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Автовокзал' AND b.name = 'улица Советская'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Советская' AND b.name = 'дом Пионеров'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 400}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'дом Пионеров' AND b.name = 'дом Культуры'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'дом Культуры' AND b.name = 'посёлок Труда'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 400}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Труда' AND b.name = 'улица Повенецкая'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Повенецкая' AND b.name = 'посёлок Пудоржский'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 150}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Пудоржский' AND b.name = 'Лумбуши-1'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-1' AND b.name = 'Лумбуши-2'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 150}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-2' AND b.name = 'Лумбуши-3'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 200}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-3' AND b.name = 'Брюхово'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Брюхово' AND b.name = 'улица Кирова'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Кирова' AND b.name = 'посёлок Пиндуши'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Общежитие'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 200}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Общежитие' AND b.name = 'Младшая школа'
+CREATE (a)-[:road{type: 'marshrut_1', distance: 200}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Автовокзал' AND b.name = 'улица Советская'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Советская' AND b.name = 'дом Пионеров'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'дом Пионеров' AND b.name = 'дом Культуры'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'дом Культуры' AND b.name = 'посёлок Труда'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Труда' AND b.name = 'улица Повенецкая'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Повенецкая' AND b.name = 'посёлок Пудоржский'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Пудоржский' AND b.name = 'Лумбуши-1'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-1' AND b.name = 'Лумбуши-2'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-2' AND b.name = 'Лумбуши-3'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 200}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-3' AND b.name = 'Брюхово'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Брюхово' AND b.name = 'улица Кирова'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'улица Кирова' AND b.name = 'посёлок Пиндуши'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Мост'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 800}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Мост' AND b.name = 'Ясная поляна'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 1500}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Ясная поляна' AND b.name = 'посёлок Повенец'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 2000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'посёлок Повенец' AND b.name = 'Повенец конечная'
+CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Автовокзал' AND b.name = 'Лавасгуба'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 10000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лавасгуба' AND b.name = 'Федотово'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 7000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Федотово' AND b.name = 'Сигово'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 20000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Сигово' AND b.name = 'Мост Плавник'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 3000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Мост Плавник' AND b.name = 'Шуньга'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 9000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Шуньга' AND b.name = 'Великая Нева'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 2000}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Великая Нева' AND b.name = 'Великая Губа'
+CREATE (a)-[:road{type: 'marshrut_3', distance: 4000}]->(b);
+
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Станция-1' AND b.name = 'Станция-2'
+CREATE (a)-[:road{type: 'marshrut_4', distance: 800}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Станция-2' AND b.name = 'Лумбуши-1'
+CREATE (a)-[:road{type: 'marshrut_4', distance: 900}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Лумбуши-2' AND b.name = 'Новая-1'
+CREATE (a)-[:road{type: 'marshrut_5', distance: 20}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Новая-1' AND b.name = 'Новая-2'
+CREATE (a)-[:road{type: 'marshrut_5', distance: 50}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Новая-2' AND b.name = 'Новая-3'
+CREATE (a)-[:road{type: 'marshrut_5', distance: 40}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Новая-3' AND b.name = 'Новая-4'
+CREATE (a)-[:road{type: 'marshrut_5', distance: 20}]->(b);
+
+MATCH
+(a:Station),
+(b:Station)
+WHERE a.name = 'Новая-4' AND b.name = 'Брюхово'
+CREATE (a)-[:road{type: 'marshrut_5', distance: 30}]->(b);
+
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Автовокзал' AND b.name = 'Карелочка'
+CREATE (a)-[r: near{name: 'hostel'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Автовокзал' AND b.name = 'Вокзал'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'улица Советская' AND b.name = 'Цветочный'
+CREATE (a)-[r: near{name: 'shop'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'дом Пионеров' AND b.name = 'Онежская'
+CREATE (a)-[r: near{name: 'hostel'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'дом Пионеров' AND b.name = 'Школа №1'
+CREATE (a)-[r: near{name: 'education'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'дом Культуры' AND b.name = 'Ростелеком'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'дом Культуры' AND b.name = 'Дом Культуры'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'дом Культуры' AND b.name = 'Городской парк'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Труда' AND b.name = 'Тюрьма'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Труда' AND b.name = 'Песня'
+CREATE (a)-[r: near{name: 'shop'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'улица Повенецкая' AND b.name = 'Заправка'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Пудоржский' AND b.name = 'Мойка'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Лумбуши-1' AND b.name = 'Кладбище'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Лумбуши-2' AND b.name = 'Посевные поля'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Лумбуши-3' AND b.name = 'Отдых'
+CREATE (a)-[r: near{name: 'hostel'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Брюхово' AND b.name = 'Церковь'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'улица Кирова' AND b.name = 'Клава'
+CREATE (a)-[r: near{name: 'cafe'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Таверна'
+CREATE (a)-[r: near{name: 'cafe'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Библиотека'
+CREATE (a)-[r: near{name: 'education'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Общежитие' AND b.name = 'Северный'
+CREATE (a)-[r: near{name: 'shop'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Общежитие' AND b.name = 'Аптека'
+CREATE (a)-[r: near{name: 'medicine'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Младшая школа' AND b.name = 'Пятёрочка'
+CREATE (a)-[r: near{name: 'shop'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Младшая школа' AND b.name = 'Пиндушская Школа'
+CREATE (a)-[r: near{name: 'education'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'посёлок Повенец' AND b.name = 'Памятник'
+CREATE (a)-[r: near{name: 'public'}]->(b);
+
+MATCH
+(a:Station),
+(b:organization)
+WHERE a.name = 'Повенец конечная' AND b.name = 'Магазин у дома'
+CREATE (a)-[r: near{name: 'shop'}]->(b);
+
+
+

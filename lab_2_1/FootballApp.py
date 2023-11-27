@@ -84,8 +84,15 @@ class FootballApp:
 
     def add_key_value(self):
         key = self.key_entry.get()
+        
         value = self.value_entry.get()
+        value_new = value
+        try:
+            value_new = int(value)
+        except:
+            pass
 
+        value = value_new
         key = key.split('.')
 
         if (len(key) == 1):

@@ -1,14 +1,13 @@
 import pymongo
 import tkinter as tk
 from tkinter import ttk
+import json
 
 # Подключение
 client = pymongo.MongoClient('localhost')
 database = client['22307']
-
 # Создание коллекции
-shop_collection = database["chekarev-shop_data"]
-
+collection = database["chekarev-shop_data"]
 
 def save_document():
     shop_data = \
@@ -27,10 +26,10 @@ def save_document():
         },
         "customer_info": [
             {
-                "customer_name": "Анна Иванова",
+                "customer_name": "Анна Кирьянен",
                 "purchase_date": "2023-01-10",
                 "review": "Отличный выбор для работы и развлечений",
-                "delivery_service": "TechExpress"
+                "delivery_service": "ExpressTech"
             },
             {
                 "customer_name": "Павел Смирнов",
@@ -57,13 +56,13 @@ def save_document():
                 "customer_name": "Евгений Козлов",
                 "purchase_date": "2023-03-15",
                 "review": "Мощный процессор, стильный дизайн",
-                "delivery_service": "ProExpress"
+                "delivery_service": "ExpressTech"
             },
             {
                 "customer_name": "Марина Семенова",
                 "purchase_date": "2023-04-02",
                 "review": "Большой объем памяти, удобный в использовании",
-                "delivery_service": "ExpressProTech"
+                "delivery_service": "TechExpress"
             }
         ]
     },
@@ -81,16 +80,16 @@ def save_document():
         },
         "customer_info": [
             {
-                "customer_name": "Ольга Петрова",
+                "customer_name": "Анна Кирьянен",
                 "purchase_date": "2023-03-20",
                 "review": "Идеальный для профессионального использования",
-                "delivery_service": "EliteExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Дмитрий Игнатьев",
                 "purchase_date": "2023-04-18",
                 "review": "Быстрый и надежный, высокая производительность",
-                "delivery_service": "ExpressEliteTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -108,16 +107,16 @@ def save_document():
         },
         "customer_info": [
             {
-                "customer_name": "Наталья Соколова",
+                "customer_name": "Анна Кирьянен",
                 "purchase_date": "2023-01-25",
                 "review": "Легкий и компактный, отлично подходит для путешествий",
-                "delivery_service": "UltraExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Артем Миронов",
                 "purchase_date": "2023-02-10",
                 "review": "Удобный и стильный, хорошая цена",
-                "delivery_service": "ExpressUltraTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -138,13 +137,13 @@ def save_document():
                 "customer_name": "Владимир Иванов",
                 "purchase_date": "2023-03-05",
                 "review": "Отличное соотношение цена-качество",
-                "delivery_service": "PowerExpress"
+                "delivery_service": "ExpressTech"
             },
             {
                 "customer_name": "Екатерина Кузнецова",
                 "purchase_date": "2023-04-15",
                 "review": "Высокая производительность, стильный дизайн",
-                "delivery_service": "ExpressPowerTech"
+                "delivery_service": "TechExpress"
             }
         ]
     },
@@ -166,13 +165,13 @@ def save_document():
                 "customer_name": "Михаил Петров",
                 "purchase_date": "2023-03-15",
                 "review": "iOS на высоте, отличная производительность",
-                "delivery_service": "AppleExpress"
+                "delivery_service": "ExpressTech"
             },
             {
                 "customer_name": "Анна Ковалева",
                 "purchase_date": "2023-04-20",
                 "review": "Прекрасная камера, стильный дизайн",
-                "delivery_service": "iPhoneDelivery"
+                "delivery_service": "TechExpress"
             }
         ]
     },
@@ -193,7 +192,7 @@ def save_document():
                 "customer_name": "Татьяна Новикова",
                 "purchase_date": "2023-03-20",
                 "review": "Чистый Android, отличная камера",
-                "delivery_service": "PixelExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Сергей Игнатов",
@@ -220,13 +219,13 @@ def save_document():
                 "customer_name": "Наталья Соколова",
                 "purchase_date": "2023-03-25",
                 "review": "Быстрая зарядка, отличная производительность",
-                "delivery_service": "OneExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Артем Миронов",
                 "purchase_date": "2023-04-02",
                 "review": "Операционная система OxygenOS на высшем уровне",
-                "delivery_service": "OneDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -244,16 +243,16 @@ def save_document():
         },
         "customer_info": [
             {
-                "customer_name": "Ирина Кудрявцева",
+                "customer_name": "Анна Кирьянен",
                 "purchase_date": "2023-04-05",
                 "review": "Большой и красочный экран, отличная камера",
-                "delivery_service": "MiExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Владимир Попов",
                 "purchase_date": "2023-04-18",
                 "review": "Доступная цена, высокая производительность",
-                "delivery_service": "XiaomiDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -274,13 +273,13 @@ def save_document():
                 "customer_name": "Денис Лебедев",
                 "purchase_date": "2023-04-10",
                 "review": "Превосходный экран, мощная камера",
-                "delivery_service": "SonyExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Анастасия Семенова",
                 "purchase_date": "2023-04-15",
                 "review": "Удобный и стильный, отличное качество сборки",
-                "delivery_service": "XperiaDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -301,13 +300,13 @@ def save_document():
                 "customer_name": "Александра Кузнецова",
                 "purchase_date": "2023-03-08",
                 "review": "Отличный баланс цены и качества",
-                "delivery_service": "RedmiExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Василий Иванов",
                 "purchase_date": "2023-03-12",
                 "review": "Долгая автономия, быстрая доставка",
-                "delivery_service": "XiaomiNoteDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -326,13 +325,13 @@ def save_document():
                 "customer_name": "Елена Васнецова",
                 "purchase_date": "2023-01-18",
                 "review": "Отличное звучание, удобные наушники",
-                "delivery_service": "AudioExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Сергей Игнатов",
                 "purchase_date": "2023-02-08",
                 "review": "Хороший выбор за свою цену",
-                "delivery_service": "SoundDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -351,13 +350,13 @@ def save_document():
                 "customer_name": "Александр Петров",
                 "purchase_date": "2023-03-15",
                 "review": "Басы просто огонь, отличные наушники для музыки",
-                "delivery_service": "BassExpress"
+                "delivery_service": "ExpressTech"
             },
             {
                 "customer_name": "Ольга Козлова",
                 "purchase_date": "2023-04-02",
                 "review": "Отличное шумоподавление, удобные в ношении",
-                "delivery_service": "ExpressBassTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -376,13 +375,13 @@ def save_document():
                 "customer_name": "Ирина Новикова",
                 "purchase_date": "2023-03-20",
                 "review": "Отличный звук, долгое время работы батареи",
-                "delivery_service": "SonicExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Андрей Семенов",
                 "purchase_date": "2023-04-18",
                 "review": "Комфортные наушники, отличное качество звука",
-                "delivery_service": "ExpressSonicTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -401,13 +400,13 @@ def save_document():
                 "customer_name": "Николай Соколов",
                 "purchase_date": "2023-01-25",
                 "review": "Прекрасное качество звука, удобные наушники",
-                "delivery_service": "UltraExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Марина Миронова",
                 "purchase_date": "2023-02-10",
                 "review": "Легкие и удобные, отличное соотношение цена-качество",
-                "delivery_service": "ExpressUltraTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -426,13 +425,13 @@ def save_document():
                 "customer_name": "Екатерина Павлова",
                 "purchase_date": "2023-03-05",
                 "review": "Отличные для звонков, красивый дизайн",
-                "delivery_service": "HarmonyExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Денис Семенов",
                 "purchase_date": "2023-04-15",
                 "review": "Хорошее сочетание цвета и качества звука",
-                "delivery_service": "ExpressHarmonyTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -452,13 +451,13 @@ def save_document():
                 "customer_name": "Артем Михайлов",
                 "purchase_date": "2023-03-05",
                 "review": "Отличный телевизор, яркое изображение",
-                "delivery_service": "UltraExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Людмила Козлова",
                 "purchase_date": "2023-04-02",
                 "review": "Умные функции работают на ура",
-                "delivery_service": "SmartVisionDelivery"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -478,13 +477,13 @@ def save_document():
                 "customer_name": "Анна Петрова",
                 "purchase_date": "2023-03-20",
                 "review": "Великолепное изображение, множество умных функций",
-                "delivery_service": "ProExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Дмитрий Игнатьев",
                 "purchase_date": "2023-04-18",
                 "review": "Идеальный выбор для киноманов",
-                "delivery_service": "ExpressProTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -504,13 +503,13 @@ def save_document():
                 "customer_name": "Максим Соколов",
                 "purchase_date": "2023-01-25",
                 "review": "Большой экран, отличные цвета",
-                "delivery_service": "VisionaryExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Алиса Новикова",
                 "purchase_date": "2023-02-10",
                 "review": "Умные функции удобны в использовании",
-                "delivery_service": "ExpressVisionaryTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     },
@@ -530,165 +529,421 @@ def save_document():
                 "customer_name": "Екатерина Миронова",
                 "purchase_date": "2023-03-05",
                 "review": "Хорошее сочетание цена-качество",
-                "delivery_service": "SmartViewExpress"
+                "delivery_service": "TechExpress"
             },
             {
                 "customer_name": "Иван Семенов",
                 "purchase_date": "2023-04-15",
                 "review": "Прост в использовании, красочное изображение",
-                "delivery_service": "ExpressSmartViewTech"
+                "delivery_service": "ExpressTech"
             }
         ]
     }
     ]
 
-    shop_collection.delete_many({})
+    collection.delete_many({})
 
     for document in shop_data:
-        shop_collection.insert_one(document)
+        collection.insert_one(document)
     print(len(shop_data))
     
-
 # save_document()
-import tkinter as tk
-from tkinter import ttk
-import pymongo
+
+
 
 class ProductQueryApp:
+    listCategory = sorted(list(collection.distinct("category")))
+    listCustomer = sorted(list(collection.distinct("customer_info.customer_name")))
+    listColors = sorted(list(collection.distinct("characteristics.color")))
+    listProducts = sorted(list(collection.distinct("product_name")))
+    listDeliveries = sorted(list(collection.distinct("customer_info.delivery_service")))
+
+
+
+
     def __init__(self, master, collection):
         self.master = master
         self.master.title("Product Query App")
 
         self.collection = collection
 
-        self.create_widgets()
+        # Первый запрос
+        self.category_label1 = tk.Label(self.master, text="Категория:")
+        self.category_label1.grid(row=0, column=0, padx=10, pady=10)
 
-    def create_widgets(self):
-        self.category_label = tk.Label(self.master, text="Категория:")
-        self.category_label.grid(row=0, column=0, padx=10, pady=10)
+        self.collection_var1 = tk.StringVar()
+        self.collection_entry1 = ttk.Combobox(master,textvariable=self.collection_var1, values=self.listCategory)
+        self.collection_entry1.grid(row=1, column=0)
 
-        self.category_entry = tk.Entry(self.master)
-        self.category_entry.grid(row=0, column=1, columnspan=2, padx=10, pady=10)
+        self.query_button_1 = tk.Button(self.master, text="1. Названия товаров по категории", command=self.get_product_names_by_catregory)
+        self.query_button_1.grid(row=2, column=0, padx=10, pady=10)
 
-        self.query_button_1 = tk.Button(self.master, text="1. Названия товаров по категории", command=self.query_1)
-        self.query_button_1.grid(row=1, column=0, padx=10, pady=10)
+        # Второй запрос
+        self.category_label2 = tk.Label(self.master, text="Категория:")
+        self.category_label2.grid(row=0, column=1, padx=10, pady=10)
 
-        self.query_button_2 = tk.Button(self.master, text="2. Характеристики товаров по категории", command=self.query_2)
-        self.query_button_2.grid(row=1, column=1, padx=10, pady=10)
+        self.collection_var2 = tk.StringVar()
+        self.collection_entry2 = ttk.Combobox(master,textvariable=self.collection_var2, values=self.listCategory)
+        self.collection_entry2.grid(row=1, column=1)
 
-        self.query_button_3 = tk.Button(self.master, text="3. Товары, купленные заданным покупателем", command=self.query_3)
-        self.query_button_3.grid(row=1, column=2, padx=10, pady=10)
+        self.query_button_2 = tk.Button(self.master, text="2. Характеристики товаров по категории", command=self.get_product_characteristics_by_category)
+        self.query_button_2.grid(row=2, column=1, padx=10, pady=10)
 
-        self.query_button_4 = tk.Button(self.master, text="4. Товары с заданным цветом", command=self.query_4)
-        self.query_button_4.grid(row=1, column=3, padx=10, pady=10)
+        # Третий запрос
+        self.category_label2 = tk.Label(self.master, text="Покупатели:")
+        self.category_label2.grid(row=0, column=2, padx=10, pady=10)
 
-        self.query_button_5 = tk.Button(self.master, text="5. Общая сумма проданных товаров", command=self.query_5)
-        self.query_button_5.grid(row=2, column=0, padx=10, pady=10)
+        self.collection_var3 = tk.StringVar()
+        self.collection_entry3 = ttk.Combobox(master,textvariable=self.collection_var3, values=self.listCustomer)
+        self.collection_entry3.grid(row=1, column=2)
 
-        self.query_button_6 = tk.Button(self.master, text="6. Количество товаров в каждой категории", command=self.query_6)
-        self.query_button_6.grid(row=2, column=1, padx=10, pady=10)
+        self.query_button_3 = tk.Button(self.master, text="3. Товары, купленные заданным покупателем", command=self.get_products_by_customer)
+        self.query_button_3.grid(row=2, column=2, padx=10, pady=10)
 
-        self.query_button_7 = tk.Button(self.master, text="7. Имена покупателей заданного товара", command=self.query_7)
-        self.query_button_7.grid(row=2, column=2, padx=10, pady=10)
+        # Четвертый запрос
+        self.category_label4 = tk.Label(self.master, text="Цвета:")
+        self.category_label4.grid(row=0, column=3, padx=10, pady=10)
 
-        self.query_button_8 = tk.Button(self.master, text="8. Имена покупателей с доставкой от заданной фирмы", command=self.query_8)
-        self.query_button_8.grid(row=2, column=3, padx=10, pady=10)
+        self.collection_var4 = tk.StringVar()
+        self.collection_entry4 = ttk.Combobox(master,textvariable=self.collection_var4, values=self.listColors)
+        self.collection_entry4.grid(row=1, column=3)
 
+        self.query_button_4 = tk.Button(self.master, text="4. Товары с заданным цветом", command=self.get_products_by_color)
+        self.query_button_4.grid(row=2, column=3, padx=10, pady=10)
+
+        # Пятый запрос
+        self.category_label5 = tk.Label(self.master, text="Общая сумма:")
+        self.category_label5.grid(row=3, column=0, padx=10, pady=10)
+
+        self.query_button_5 = tk.Button(self.master, text="5. Общая сумма проданных товаров", command=self.get_total_sold_amount)
+        self.query_button_5.grid(row=5, column=0, padx=10, pady=10)
+
+        # Шестой запрос
+        self.category_label6 = tk.Label(self.master, text="Товары в категориях:")
+        self.category_label6.grid(row=3, column=1, padx=10, pady=10)
+
+        self.query_button_6 = tk.Button(self.master, text="6. Количество товаров в каждой категории", command=self.get_products_count_by_category)
+        self.query_button_6.grid(row=5, column=1, padx=10, pady=10)
+
+        # Седьмой запрос
+        self.category_label7 = tk.Label(self.master, text="Товары:")
+        self.category_label7.grid(row=3, column=2, padx=10, pady=10)
+
+        self.collection_var7 = tk.StringVar()
+        self.collection_entry7 = ttk.Combobox(master,textvariable=self.collection_var7, values=self.listProducts)
+        self.collection_entry7.grid(row=4, column=2)
+
+        self.query_button_7 = tk.Button(self.master, text="7. Имена покупателей заданного товара", command=self.get_customer_names_by_product)
+        self.query_button_7.grid(row=5, column=2, padx=10, pady=10)
+
+        # Восьмой запрос
+        self.category_label8 = tk.Label(self.master, text="Товары:")
+        self.category_label8.grid(row=3, column=3, padx=10, pady=10)
+
+        self.collection_var8 = tk.StringVar()
+        self.collection_entry8 = ttk.Combobox(master,textvariable=self.collection_var8, values=self.listProducts)
+        self.collection_entry8.grid(row=4, column=3)
+
+        self.category_label8_1 = tk.Label(self.master, text="Службы доставки")
+        self.category_label8_1.grid(row=5, column=3, padx=10, pady=10)
+
+        self.collection_var8_1 = tk.StringVar()
+        self.collection_entry8 = ttk.Combobox(master,textvariable=self.collection_var8_1, values=self.listDeliveries)
+        self.collection_entry8.grid(row=6, column=3)
+
+        self.query_button_8 = tk.Button(self.master, text="8. Имена покупателей с доставкой от заданной фирмы", command=self.get_customer_names_by_product_and_delivery)
+        self.query_button_8.grid(row=7, column=3, padx=10, pady=10)
+
+        # Блок с результатом
         self.result_label = tk.Label(self.master, text="Результат:")
-        self.result_label.grid(row=5, column=1, columnspan=2, padx=10, pady=10)
+        self.result_label.grid(row=8, column=1, columnspan=2, padx=10, pady=10)
 
-        self.result_text = tk.Text(self.master, height=10, width=50)
-        self.result_text.grid(row=6, column=1, columnspan=2, padx=10, pady=10)
+        self.result_text = tk.Text(self.master, height=10, width=50, state="disabled")
+        self.result_text.grid(row=9, column=1, columnspan=2, padx=10, pady=10)
 
-    def query_1(self):
-        category = self.category_entry.get()
+
+    #####################################################
+    # 1 запрос
+    def get_product_names_by_catregory(self):
+        category = self.collection_var1.get()
         result_text = f"1. Названия товаров по категории '{category}':\n"
-        result_text += f"{self.get_product_names_by_category(category)}\n"
+
+        pipeline = [
+            {
+                "$match": {"category": category}
+            },
+            {
+            "$project": {
+                "_id": 0,
+                "product_name": 1
+                }
+            }
+        ]
+
+        a = self.collection.aggregate(
+            pipeline
+        )
+
+        for name in a:
+            result_text += name['product_name'] + '\n'
+
         self.update_result_text(result_text)
 
-    def query_2(self):
-        category = self.category_entry.get()
+
+    # 2 запрос
+    def get_product_characteristics_by_category(self):
+        category = self.collection_var2.get()
         result_text = f"2. Характеристики товаров по категории '{category}':\n"
-        result_text += f"{self.get_product_characteristics_by_category(category)}\n"
-        self.update_result_text(result_text)
 
-    def query_3(self):
-        customer_name = self.category_entry.get()
-        result_text = f"3. Товары, купленные покупателем '{customer_name}':\n"
-        result_text += f"{self.get_products_by_customer(customer_name)}\n"
-        self.update_result_text(result_text)
+        pipeline = [
+            {
+                "$match": {"category": category}
+            },
+            {
+            "$project": {
+                "_id": 0,
+                "product_name": 1,
+                "characteristics": 1
+                }
+            }
+        ]
 
-    def query_4(self):
-        color = self.category_entry.get()
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = json.dumps(doc, indent=2, ensure_ascii=False) +  '\n_______________________________________\n\n'
+            self.result_text.insert(tk.END, json_str)
+
+        
+        self.result_text.config(state="disabled")
+
+
+     # 3 запрос
+    def get_products_by_customer(self):
+        customer = self.collection_var3.get()
+
+        result_text = f"3. Товары, купленные покупателем '{customer}':\n"
+
+
+        pipeline = [
+            {
+                "$match": {"customer_info.customer_name": customer}
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "product_name": "$product_name",
+                    "price": "$price"
+                }
+            }
+        ]
+
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = json.dumps(doc, indent=2, ensure_ascii=False) +  '\n_______________________________________\n\n'
+            self.result_text.insert(tk.END, json_str)
+
+        
+        self.result_text.config(state="disabled")
+
+
+     # 4 запрос
+    def get_products_by_color(self):
+        color = self.collection_var4.get()
         result_text = f"4. Товары с цветом '{color}':\n"
-        result_text += f"{self.get_products_by_color(color)}\n"
-        self.update_result_text(result_text)
 
-    def query_5(self):
-        result_text = f"5. Общая сумма проданных товаров:\n"
-        result_text += f"{self.get_total_sold_amount()}\n"
-        self.update_result_text(result_text)
+        pipeline = [
+            {
+                "$match": {"characteristics.color": color}
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "product_name": "$product_name",
+                    "manufacturer":"$manufacturer",
+                    "price": "$price"
+                }
+            }
+        ]
 
-    def query_6(self):
-        result_text = f"6. Количество товаров в каждой категории:\n"
-        result_text += f"{self.get_products_count_by_category()}\n"
-        self.update_result_text(result_text)
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = json.dumps(doc, indent=2, ensure_ascii=False) +  '\n_______________________________________\n\n'
+            self.result_text.insert(tk.END, json_str)
 
-    def query_7(self):
-        product_name = self.category_entry.get()
-        result_text = f"7. Имена покупателей товара '{product_name}':\n"
-        result_text += f"{self.get_customer_names_by_product(product_name)}\n"
-        self.update_result_text(result_text)
-
-    def query_8(self):
-        product_name = self.category_entry.get()
-        delivery_service = "YourDeliveryService"  # Замените на фактическую службу доставки
-        result_text = f"8. Имена покупателей товара '{product_name}' с доставкой от '{delivery_service}':\n"
-        result_text += f"{self.get_customer_names_by_product_and_delivery(product_name, delivery_service)}\n"
-        self.update_result_text(result_text)
-
-    def get_product_names_by_category(self, category):
-        # Ваши запросы
-        return ["Product1", "Product2", "Product3"]
-
-    def get_product_characteristics_by_category(self, category):
-        # Ваши запросы
-        return [{"characteristic1": "value1"}, {"characteristic2": "value2"}, {"characteristic3": "value3"}]
-
-    def get_products_by_customer(self, customer_name):
-        # Ваши запросы
-        return ["Product1", "Product2", "Product3"]
-
-    def get_products_by_color(self, color):
-        # Ваши запросы
-        return ["Product1", "Product2", "Product3"]
+        
+        self.result_text.config(state="disabled")
 
     def get_total_sold_amount(self):
-        # Ваши запросы
-        return "$1000.00"
+        result_text = f"5. Общая сумма проданных товаров: "
+
+        pipeline = [
+            {
+                "$group": {
+                    "_id": None,
+                    "total_sales": {"$sum": "$price"}
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "total_sales": 1
+                }
+            }
+        ]
+
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = doc["total_sales"]
+            self.result_text.insert(tk.END, json_str)
+        
+        
+        self.result_text.config(state="disabled")
+
 
     def get_products_count_by_category(self):
-        # Ваши запросы
-        return {"Category1": 10, "Category2": 15, "Category3": 8}
+        result_text = f"6. Количество товаров в каждой категории:\n"
 
-    def get_customer_names_by_product(self, product_name):
-        # Ваши запросы
-        return ["Customer1", "Customer2", "Customer3"]
+        pipeline = [
+        {
+            "$group": {
+                "_id": "$category",
+                "total_products": {"$sum": 1}
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "category": "$_id",
+                "total_products": 1
+            }
+        }
+    ]
 
-    def get_customer_names_by_product_and_delivery(self, product_name, delivery_service):
-        # Ваши запросы
-        return ["Customer1", "Customer2", "Customer3"]
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = json.dumps(doc, indent=2, ensure_ascii=False) +  '\n_______________________________________\n\n'
+            self.result_text.insert(tk.END, json_str)
+
+        
+        self.result_text.config(state="disabled")
+
+    def get_customer_names_by_product(self):
+        product_name = self.collection_var7.get()
+        result_text = f"7. Имена покупателей товара '{product_name}':\n"
+
+        pipeline = [
+            {
+                "$match": {"product_name": product_name}
+            },
+            {
+                "$group": {
+                    "_id": "$customer_info.customer_name"
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "customer_name": "$_id"
+                }
+            }
+        ]
+
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = json.dumps(doc, indent=2, ensure_ascii=False) +  '\n_______________________________________\n\n'
+            self.result_text.insert(tk.END, json_str)
+
+        self.result_text.config(state="disabled")
+
+
+    def get_customer_names_by_product_and_delivery(self):
+        product_name = self.collection_var8.get()
+        delivery_service = self.collection_var8_1.get()
+
+        result_text = f"8. Имена покупателей товара '{product_name}' с доставкой от '{delivery_service}':\n"
+
+
+        pipeline = [
+            {
+                "$match": {"product_name": product_name, "customer_info.delivery_service": delivery_service}
+            },
+            {
+                "$unwind": "$customer_info"
+            },
+            {
+                "$match": {"customer_info.delivery_service": delivery_service}
+            },
+            {
+                "$group": {
+                    "_id": "$customer_info.customer_name"
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "customer_name": "$_id"
+                }
+            }
+        ]
+        a = self.collection.aggregate(
+            pipeline
+        )
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, result_text)
+        
+        for doc in a:
+            json_str = doc["customer_name"]
+            self.result_text.insert(tk.END, "-" +json_str+",\n")
+
+        self.result_text.config(state="disabled")
+    
 
     def update_result_text(self, text):
+        self.result_text.config(state=tk.NORMAL)  # Включаем режим редактирования
         self.result_text.delete(1.0, tk.END)
         self.result_text.insert(tk.END, text)
+        self.result_text.config(state="disabled")
 
-# Пример использования
-client = pymongo.MongoClient('192.168.112.103')
-database = client['your_database_name']
-collection_name = database["your_collection_name"]
+
 
 root = tk.Tk()
-app = ProductQueryApp(root, collection_name)
+app = ProductQueryApp(root, collection)
 root.mainloop()
 
