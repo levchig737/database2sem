@@ -171,97 +171,97 @@ MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Автовокзал' AND b.name = 'улица Советская'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Советская' AND b.name = 'дом Пионеров'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'дом Пионеров' AND b.name = 'дом Культуры'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'дом Культуры' AND b.name = 'посёлок Труда'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Труда' AND b.name = 'улица Повенецкая'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Повенецкая' AND b.name = 'посёлок Пудоржский'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 150}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Пудоржский' AND b.name = 'Лумбуши-1'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-1' AND b.name = 'Лумбуши-2'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 150}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-2' AND b.name = 'Лумбуши-3'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 200}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 200}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-3' AND b.name = 'Брюхово'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Брюхово' AND b.name = 'улица Кирова'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Кирова' AND b.name = 'посёлок Пиндуши'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Мост'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 800}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 800}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Мост' AND b.name = 'Ясная поляна'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 1500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 1500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Ясная поляна' AND b.name = 'посёлок Повенец'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 2000}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 2000}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Повенец' AND b.name = 'Повенец конечная'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 -----------------------------------------------------
 
@@ -518,14 +518,14 @@ CREATE (a)-[r: near{name: 'shop'}]->(b);
 
 ЗАПРОСЫ
 
-1. Получить последовательность остановок для заданного маршрута:
+//1. Получить последовательность остановок для заданного маршрута:
 MATCH p = (:Station)-[r:road{type: 'marshrut_1'}]->(:Station)
 WITH nodes(p) AS stops
 UNWIND stops AS stop
 RETURN DISTINCT stop.name AS Остановка;
 
 
-2. Получить названия организаций, расположенных рядом с заданной остановкой:
+//2. Получить названия организаций, расположенных рядом с заданной остановкой:
 match (a:Station{name : 'Общежитие'})-[r:near]->(b:organization)  
 return b.name as Организация
 
@@ -534,42 +534,66 @@ match (a:Station{name : 'Общежитие'})-[r:near]-(b:organization)
 return a, r, b
 
 
-3. Найти все названия остановок, на которых возможны пересадки на другой маршрут:
+//3. Найти все названия остановок, на которых возможны пересадки на другой маршрут:
 match (a:Station)-[r:road]->(:Station)
 with  a, count(r) as num
 where num > 1
 return a.name as `Название отсановки`, num as `Количество маршрутов`
 
 
-4. Найти все названия остановок, на которых останавливается только один маршрут:
+//4. Найти все названия остановок, на которых останавливается только один маршрут:
 match (:Station)-[r:road]->(b:Station)
 with  b, count(r) as num
 where num = 1
 return b.name as `Название остановки`, num as `Количество маршрутов`
 
 
-5. Найти названия учебных организаций и названия остановок, около которых они расположены:
+//5. Найти названия учебных организаций и названия остановок, около которых они расположены:
 match (b:Station)-[r:near]->(a:organization:education)
 return a.name as `Учебная организация`, b.name as Остановка
 
 
-6. Получить все маршруты от одной заданной остановки до другой заданной остановки:
-match p = (st:Station{name: 'Лумбуши-1'})-[a:road*]->(x:Station{name:'Брюхово'}) 
+//6. Получить все маршруты от одной заданной остановки до другой заданной остановки:
+match p = (st:Station{name: 'Новая-4'})-[a:road*]->(x:Station{name:'Автовокзал'}) 
 return p
 
 
-7. Получить минимальный по количеству остановок маршрут от одной заданной остановки до другой заданной остановки:
+//7. Получить минимальный по количеству остановок маршрут от одной заданной остановки до другой заданной остановки:
 match (a:Station{name:'Лумбуши-1'}), (b:Station{name:'Брюхово'}), 
 s = shortestPath((a)-[:road*]->(b)) 
 return s
 
 
-8. Получить все маршруты, которые проходят через 3 заданные остановки
-match p = (a:Station{name:'Лумбуши-1'})-[r1:road*]->(b:Station{name:'Брюхово'})-[r2:road*]->(c:Station{name: 'посёлок Пиндуши'}) 
+//8. Получить все маршруты, которые проходят через 3 заданные остановки
+MATCH p = (s:Station)-[:road*]->(e:Station)
+WHERE
+ALL(stop_name IN ["дом Пионеров", "улица Советская", "дом Пионеров"]
+WHERE stop_name IN [stop in nodes(p) | stop.name])
+AND ALL(rel IN relationships(p) WHERE rel.type = relationships(p)[0].type)
+WITH relationships(p) AS rels
+UNWIND rels AS edge
+RETURN DISTINCT edge.type AS marsh
+
+
+ИЛИ
+call{
+    match (a:Station)-[r:road]->(b:Station) 
+    with collect(distinct r.type) as n
+    unwind n as q
+    return q as marshruts
+}
+
+MATCH p = (a:Station)-[:road*]->(:Station {name: 'дом Культуры'})-[:road*]->(b:Station)
+WHERE ALL(x IN relationships(p) WHERE x.type in marshruts) and ((a.name = 'посёлок Пудоржский' and b.name = 'Автовокзал') or (b.name = 'посёлок Пудоржский' and a.name = 'Автовокзал'))
 return p
 
+ИЛИ
+MATCH p = (:Station {name: 'посёлок Пудоржский'})-[:road*]->(:Station {name: 'дом Культуры'})-[:road*]->(:Station {name: 'Автовокзал'})
+MATCH p2 = (:Station {name: 'Автовокзал'})-[:road*]->(:Station {name: 'дом Культуры'})-[:road*]->(:Station {name: 'посёлок Пудоржский'})
+RETURN p, p2;
 
-9. Получить маршрут, который проходит рядом с максимальным количеством магазинов
+
+//9. Получить маршрут, который проходит рядом с максимальным количеством магазинов
 //Получаем список названий маршрутов
 call{
     match (a:Station)-[r:road]->(b:Station) 
@@ -585,7 +609,7 @@ return marshruts as `Маршрут`, max(num) as `Количество мага
 order by max(num) desc limit 1
 
 
-10. Получить минимальный по расстоянию маршрут от одной заданной остановки до другой заданной остановки
+//10. Получить минимальный по расстоянию маршрут от одной заданной остановки до другой заданной остановки
 match p = (a:Station{name:'Лумбуши-1'})-[r1:road*]->(b:Station{name:'Брюхово'})
 unwind relationships(p) as rel
 with sum(rel.distance) as len, p
@@ -597,16 +621,14 @@ match p = (a:Station{name:'Лумбуши-1'})-[r1:road*]->(b:Station{name:'Бр
 return p
 
 
-11. Найти названия организаций, расположенных рядом с третьей по счету остановкой от заданной остановки
-match p = (a:Station{name:'Лумбуши-2'})-[*3]->(:Station)-[:near]-(b:organization)
+//11. Найти названия организаций, расположенных рядом с третьей по счету остановкой от заданной остановки
+match p = (a0:Station {name:'дом Культуры'})-[r1:road]->()-[r2:road]->()-[r3:road]->(a3:Station)-[:near]-(b:organization)
+WHERE (r1.type = r2.type) and (r2.type = r3.type)
 return distinct b.name
 
-Визуализация:
-match p = (a:Station{name:'Лумбуши-2'})-[:road*3]->(:Station)-[:near]-(b:organization)
-return distinct p
 
-
-12. Найти все маршруты, длина которых превышает 10 км
+//12. Найти все маршруты, длина которых превышает 10 км
+//Получаем список названий маршрутов
 call{
     match (a:Station)-[r:road]->(b:Station) 
     with collect(distinct r.type) as n
@@ -621,16 +643,7 @@ return marshruts as `Маршрут`, dist as `Дистанция`
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+Для удаления БД:
+MATCH (n)
+DETACH DELETE n;
 

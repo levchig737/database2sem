@@ -1,3 +1,7 @@
+MATCH (n)
+DETACH DELETE n;
+
+
 CREATE (:Station {name : 'Автовокзал'}),
 (:Station {name : 'улица Советская'}),
 (:Station {name : 'дом Пионеров'}),
@@ -148,102 +152,102 @@ MATCH
 WHERE a.name = 'Общежитие' AND b.name = 'Младшая школа'
 CREATE (a)-[:road{type: 'marshrut_1', distance: 200}]->(b);
 
+
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Автовокзал' AND b.name = 'улица Советская'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Советская' AND b.name = 'дом Пионеров'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'дом Пионеров' AND b.name = 'дом Культуры'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'дом Культуры' AND b.name = 'посёлок Труда'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Труда' AND b.name = 'улица Повенецкая'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Повенецкая' AND b.name = 'посёлок Пудоржский'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 150}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Пудоржский' AND b.name = 'Лумбуши-1'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-1' AND b.name = 'Лумбуши-2'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 150}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 150}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-2' AND b.name = 'Лумбуши-3'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 200}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 200}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Лумбуши-3' AND b.name = 'Брюхово'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 300}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 300}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Брюхово' AND b.name = 'улица Кирова'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'улица Кирова' AND b.name = 'посёлок Пиндуши'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Пиндуши' AND b.name = 'Мост'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 800}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 800}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Мост' AND b.name = 'Ясная поляна'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 1500}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 1500}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'Ясная поляна' AND b.name = 'посёлок Повенец'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 2000}]->(b);
+CREATE (b)-[:road{type: 'marshrut_2', distance: 2000}]->(a);
 
 MATCH
 (a:Station),
 (b:Station)
 WHERE a.name = 'посёлок Повенец' AND b.name = 'Повенец конечная'
-CREATE (a)-[:road{type: 'marshrut_2', distance: 400}]->(b);
-
+CREATE (b)-[:road{type: 'marshrut_2', distance: 400}]->(a);
 
 MATCH
 (a:Station),
